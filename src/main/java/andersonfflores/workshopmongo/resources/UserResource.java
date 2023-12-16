@@ -1,15 +1,13 @@
 package andersonfflores.workshopmongo.resources;
 
 import andersonfflores.workshopmongo.domain.User;
+import andersonfflores.workshopmongo.dto.UserDTO;
 import andersonfflores.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,8 +18,9 @@ public class UserResource {
     private UserService service;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<User>> findAll(){
+    public ResponseEntity<List<UserDTO>> findAll(){
         List<User> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listdto = list.stream().map(UserDTO::new).toList();
+        return ResponseEntity.ok().body(listdto);
     }
 }
