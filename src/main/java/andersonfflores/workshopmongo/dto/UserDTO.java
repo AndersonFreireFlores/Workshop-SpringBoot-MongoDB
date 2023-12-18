@@ -1,5 +1,6 @@
 package andersonfflores.workshopmongo.dto;
 
+import andersonfflores.workshopmongo.domain.Post;
 import andersonfflores.workshopmongo.domain.User;
 
 import java.io.Serializable;
